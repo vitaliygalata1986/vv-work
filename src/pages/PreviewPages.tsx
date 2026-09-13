@@ -1,5 +1,6 @@
 import { Link, useParams, useSearchParams } from 'react-router'
 import { Icon } from '../components/ui/Icon'
+import { categories, featuredPartners } from '../data/catalog'
 
 function PreviewPage({
   title,
@@ -14,7 +15,7 @@ function PreviewPage({
     <section className="page-container py-20 md:py-28">
       <title>{title} — VV Work</title>
       <p className="mb-5 text-xs font-bold tracking-widest text-brand">
-        VV WORK · ПЕРШИЙ ЕТАП
+        VV WORK · ПОПЕРЕДНІЙ ПЕРЕГЛЯД
       </p>
       <h1 className="max-w-190 text-4xl leading-tight font-bold tracking-tight md:text-6xl">
         {title}
@@ -38,6 +39,8 @@ export function PartnerPage() {
   const [params] = useSearchParams()
   const query = params.get('q')?.trim()
   const country = params.get('country')
+  const category = categories.find((item) => item.id === params.get('category'))
+  const partner = featuredPartners.find((item) => item.slug === slug)
   const countryLabels: Record<string, string> = {
     pl: 'Польща',
     de: 'Німеччина',
@@ -45,11 +48,13 @@ export function PartnerPage() {
     nl: 'Нідерланди',
   }
 
+  if (slug !== 'vv-work' && !partner) return <NotFoundPage />
+
   return (
     <PreviewPage
-      title="Твоя наступна робота — тут"
+      title={partner?.name ?? 'Твоя наступна робота — тут'}
       description="Тут буде сторінка роботодавця зі списком вакансій, пошуком і фільтрами. Параметри з головної вже передаються — наповнення додамо наступним кроком."
-      details={`Партнер: ${slug}. Пошук: ${query || 'усі вакансії'}. Країна: ${countryLabels[country ?? ''] ?? 'Уся Європа'}.`}
+      details={`Партнер: ${partner?.name ?? 'VV Work'}. Пошук: ${query || 'усі вакансії'}. Країна: ${countryLabels[country ?? ''] ?? 'Уся Європа'}. Категорія: ${category?.name ?? 'усі напрями'}.`}
     />
   )
 }

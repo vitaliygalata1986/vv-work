@@ -1,6 +1,9 @@
 import { Link } from 'react-router'
 import { Icon } from '../components/ui/Icon'
 import { CareerIllustration } from '../features/home/CareerIllustration'
+import { CategoriesSection } from '../features/home/CategoriesSection'
+import { PartnersSection } from '../features/home/PartnersSection'
+import { EmployersSection } from '../features/home/EmployersSection'
 import { HeroSearch } from '../features/search/HeroSearch'
 
 const benefits = [
@@ -85,6 +88,9 @@ export function HomePage() {
           ))}
         </div>
       </section>
+      <CategoriesSection />
+      <PartnersSection />
+      <EmployersSection />
     </>
   )
 }

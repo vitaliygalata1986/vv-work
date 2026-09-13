@@ -1,15 +1,22 @@
 import { useRef, useState } from 'react'
-import { Link, NavLink } from 'react-router'
+import { Link, useLocation } from 'react-router'
 import { Icon } from '../ui/Icon'
 import { Logo } from './Logo'
 
 const navigation = [
   { to: '/#search', label: 'Знайти роботу' },
-  { to: '/partners/vv-work', label: 'Партнери' },
+  { to: '/#partners', label: 'Партнери' },
   { to: '/контакти', label: 'Контакти' },
 ]
 
 export function Header() {
+  const { pathname, hash } = useLocation()
+  const activeTo =
+    pathname === '/'
+      ? `/${hash || '#search'}`
+      : pathname.startsWith('/partners/')
+        ? '/#partners'
+        : pathname
   const [isOpen, setIsOpen] = useState(false)
   const toggleRef = useRef<HTMLButtonElement>(null)
 
@@ -30,15 +37,14 @@ export function Header() {
           className="hidden items-center gap-9 text-sm font-semibold md:flex"
         >
           {navigation.map(({ to, label }) => (
-            <NavLink
+            <Link
               key={to}
               to={to}
-              className={({ isActive }) =>
-                `nav-link ${isActive ? 'text-brand' : ''}`
-              }
+              aria-current={activeTo === to ? 'location' : undefined}
+              className={`nav-link ${activeTo === to ? 'text-brand' : ''}`}
             >
               {label}
-            </NavLink>
+            </Link>
           ))}
         </nav>
         <Link

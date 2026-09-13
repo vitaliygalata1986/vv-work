@@ -51,6 +51,24 @@
 }
 
 @layer components {
+  .section-spacing {
+    @apply py-14 md:py-18 lg:py-22;
+  }
+  .section-eyebrow {
+    @apply text-[10px] font-bold tracking-[0.16em] text-brand;
+  }
+  .section-title {
+    @apply text-[30px] leading-[1.2] font-bold tracking-[-0.04em] md:text-4xl lg:text-[40px];
+  }
+  .section-heading-row {
+    @apply mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-10;
+  }
+  .category-card {
+    @apply block h-full rounded-2xl border border-line bg-white p-4 transition-colors hover:border-brand/40 hover:bg-brand-light/30 sm:p-6;
+  }
+  .partner-card {
+    @apply flex h-full flex-col rounded-2xl border border-line p-6 transition-colors hover:border-brand/40 hover:bg-surface lg:p-7;
+  }
   .page-container {
     @apply mx-auto w-full max-w-310 px-5 md:px-8;
   }
