@@ -44,8 +44,8 @@ npm run test:coverage # звіт у coverage/index.html
 - Оптимістична картка заявки, підтвердження або відкат при помилці зі збереженням введених даних та повторною спробою.
 - Footer із навігацією для кандидатів і роботодавців.
 
-**Ще не виконано:** фінальний axe/Lighthouse, публікація на GitHub та Vercel.
-Lighthouse ≥90 ще не вимірювали.
+**Ще не виконано:** публікація на GitHub та Vercel.
+Локальний production-аудит: Lighthouse Performance **99**, axe — **0 порушень у 27 перевірках**.
 
 ## Дані та API
 
@@ -82,6 +82,8 @@ Email не потрібен. Повідомлення необов’язков�
 
 ```text
 public/mock/          # JSON демонстраційних компаній та вакансій
+scripts/              # повторювані production-перевірки axe та Lighthouse
+docs/audits/          # результати аудиту
 src/
   api/                # fetch-обгортка, перевірка даних, запити
   components/layout/  # Layout, Header, Footer, Logo
@@ -104,7 +106,7 @@ src/
 2. Фільтри живуть в URL. Локальний React state потрібен лише для введення, меню й асинхронних станів. Це дозволяє ділитися результатами без глобального сховища.
 3. Debounce написано на `setTimeout`/`clearTimeout`. Чернетка тексту живе в окремому компоненті; вона не перерендерює список на кожну клавішу. `useMemo` стабілізує відфільтрований масив, `memo` — список і картки, `useCallback` — обробники.
 4. `/partners/vv-work` — брендована добірка всіх вакансій: пошук із головної не обмежений довільною компанією. Індивідуальні сторінки показують лише вакансії відповідного роботодавця. Країна — додатковий фільтр до брифу.
-5. SVG/CSS-графіка та локальний Manrope не потребують сторонніх сервісів. Семантичні заголовки, підписані поля, видимий фокус, skip-link і Escape для меню закладені в компоненти; повний axe-аудит ще попереду.
+5. SVG/CSS-графіка та локальний Manrope не потребують сторонніх сервісів. Семантичні заголовки, підписані поля, видимий фокус, skip-link і Escape для меню закладені в компоненти. Аудит виявив недостатній контраст вторинного тексту на блакитному тлі: спільний колір затемнено, перевірку повторено.
 
 ## Тести та перевірки
 
@@ -148,9 +150,62 @@ PartnerPage, ContactsPage, PartnersSection. Мінімальні пороги �
 [Помилка відправлення](docs/screenshots/contacts-retry.png) ·
 [Підтвердження заявки](docs/screenshots/contacts-success.png)
 
+## Production-аудит
+
+Вимірювання 14.09.2026 (Europe/Kyiv) на локальному `vite preview`, Lighthouse 12.8.2:
+
+| Performance | Accessibility | Best Practices | SEO |
+| --- | --- | --- | --- |
+| 99 | 100 | 100 | 100 |
+
+Мобільна емуляція Lighthouse 412×823, simulated throttling, CPU ×4, очищення сховища.
+FCP та LCP — **1,7 с**, TBT — **10 мс**, CLS — **0,002**.
+Затримку та випадкові помилки API під час Lighthouse не підмінювали.
+Це локальне лабораторне вимірювання: після деплою потрібно повторити його на URL Vercel.
+
+![Lighthouse: production-головна](docs/screenshots/lighthouse.png)
+
+[Повний HTML-звіт](docs/audits/lighthouse.html) · [Lighthouse JSON](docs/audits/lighthouse.json) · [axe JSON](docs/audits/axe.json)
+
+Axe 4.13.0: **27 перевірок, 0 порушень** (зокрема critical/serious), без помилок JavaScript
+та горизонтального переповнення. Головна, партнер і контакти перевіряються на 1440/768/375 px;
+додатково — мобільне меню, помилки валідації, помилка/успіх заявки, форма роботодавця,
+порожній список, skeleton та error → retry → success для всіх трьох сценаріїв з асинхронними даними.
+Перевіряються також фокус при валідації, Escape у меню та збереження контакту після помилки.
+Лише у браузері axe випадковість фіксується для відтворення станів; код застосунку не змінюється.
+
+У звіті збережені `incomplete`: axe не визначив контраст деяких ділянок із декоративними
+накладаннями та відкритим меню. Графіку й текст переглянуто в браузері; вторинний текст
+`#606c82` на `#edf2ff` має контраст понад 4,5:1. Автоматичний аудит не є повною перевіркою WCAG
+і не замінює тестування зі скринрідером.
+
+Відтворення (потрібен встановлений Google Chrome):
+
+```bash
+npm ci
+npm run build
+npm run preview -- --host 127.0.0.1 --port 4180 --strictPort
+```
+
+В іншому терміналі, послідовно, щоб перевірки не конкурували за CPU:
+
+```bash
+npm run audit:axe
+npm run audit:lighthouse
+```
+
+Для нестандартного розташування Chrome задайте `CHROME_PATH`, наприклад
+`CHROME_PATH=/opt/google/chrome/chrome npm run audit:axe`.
+`AUDIT_URL` змінює базову адресу (за замовчуванням `http://127.0.0.1:4180`).
+Скрипти перезаписують звіти в `docs/audits/`; axe завершується з помилкою при будь-якому
+порушенні, переповненні чи помилці JavaScript, Lighthouse — якщо Performance <90.
+Скриншот оновлюється окремо: відкрийте згенерований `lighthouse.html` у браузері.
+
 ## Документація залежностей
 
 - [Tailwind CSS з Vite](https://tailwindcss.com/docs/installation/using-vite)
 - [React Router](https://reactrouter.com/start/declarative/installation)
 - [Vitest: coverage](https://vitest.dev/guide/coverage.html)
 - [Testing Library: fake timers](https://testing-library.com/docs/using-fake-timers/)
+- [Playwright: accessibility testing з axe](https://playwright.dev/docs/accessibility-testing)
+- [Lighthouse: програмний запуск](https://github.com/GoogleChrome/lighthouse/blob/main/docs/readme.md)
