@@ -1,7 +1,6 @@
 export interface ApplicationFields {
   name: string
-  email: string
-  phone: string
+  contact: string
   message: string
 }
 
@@ -14,10 +13,11 @@ export interface ApplicationContext {
 
 export type ApplicationErrors = Partial<Record<keyof ApplicationFields, string>>
 
+export const MAX_MESSAGE_LENGTH = 500
+
 export const emptyApplication: ApplicationFields = {
   name: '',
-  email: '',
-  phone: '',
+  contact: '',
   message: '',
 }
 
@@ -26,8 +26,7 @@ export function normalizeApplication(
 ): ApplicationFields {
   return {
     name: fields.name.trim(),
-    email: fields.email.trim(),
-    phone: fields.phone.trim(),
+    contact: fields.contact.trim(),
     message: fields.message.trim(),
   }
 }
@@ -39,18 +38,16 @@ export function validateApplication(
   const errors: ApplicationErrors = {}
   if (value.name.length < 2 || value.name.length > 80)
     errors.name = 'Вкажи ім’я: від 2 до 80 символів.'
-  if (
-    value.email.length > 254 ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.email)
-  )
-    errors.email = 'Вкажи коректну електронну адресу.'
-  if (
-    value.phone &&
-    (!/^\+?[\d\s()-]+$/.test(value.phone) ||
-      !/^\d{7,15}$/.test(value.phone.replace(/\D/g, '')))
-  )
-    errors.phone = 'Вкажи телефон із 7–15 цифр або залиш поле порожнім.'
-  if (value.message.length < 10 || value.message.length > 2000)
-    errors.message = 'Напиши повідомлення: від 10 до 2000 символів.'
+  const isPhone =
+    /^\+?\d(?:[ -]?\d)*$/.test(value.contact.replace(/\((\d+)\)/g, '$1')) &&
+    /^\d{7,15}$/.test(value.contact.replace(/\D/g, ''))
+  const isTelegram =
+    /^(?:@|(?:https:\/\/)?t\.me\/)[a-z][a-z0-9_]{4,31}$/i.test(value.contact)
+  if (!isPhone && !isTelegram)
+    errors.contact =
+      'Вкажи телефон із 7–15 цифр або Telegram: @username чи t.me/username.'
+  // Match the textarea counter, including whitespace, before normalization.
+  if (fields.message.length > MAX_MESSAGE_LENGTH)
+    errors.message = `Повідомлення має містити не більше ${MAX_MESSAGE_LENGTH} символів.`
   return errors
 }

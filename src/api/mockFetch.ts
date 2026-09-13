@@ -7,7 +7,7 @@ export class ApiError extends Error {
   }
 }
 
-export function delay(ms: number, signal?: AbortSignal): Promise<void> {
+function delay(ms: number, signal?: AbortSignal): Promise<void> {
   return new Promise((resolve, reject) => {
     if (signal?.aborted) {
       reject(new DOMException('Aborted', 'AbortError'))
@@ -25,19 +25,26 @@ export function delay(ms: number, signal?: AbortSignal): Promise<void> {
   })
 }
 
-// Real fetch against local JSON, with simulated latency and failure before the request.
+// Shared latency, failure and cancellation for reads and local mock mutations.
 export async function mockFetch<T>(
   path: string,
   parse: (value: unknown) => T,
   signal?: AbortSignal,
+  options: Omit<RequestInit, 'signal'> = {},
 ): Promise<T> {
   await delay(300 + Math.floor(Math.random() * 501), signal)
   signal?.throwIfAborted()
   if (Math.random() < 0.2)
-    throw new ApiError('Не вдалося завантажити дані. Спробуйте ще раз.')
-  const response = await fetch(`${import.meta.env.BASE_URL}mock/${path}`, {
-    signal,
-  })
+    throw new ApiError('Не вдалося виконати запит. Спробуйте ще раз.')
+  // Static hosting has no POST endpoint. Simulate its response locally;
+  // personal data from the request body is never transmitted or persisted.
+  const response =
+    path === 'applications' && options.method === 'POST'
+      ? Response.json({ id: crypto.randomUUID() }, { status: 201 })
+      : await fetch(`${import.meta.env.BASE_URL}mock/${path}`, {
+          ...options,
+          signal,
+        })
   if (!response.ok)
     throw new ApiError('Не вдалося отримати дані.', response.status)
   const value: unknown = await response.json()

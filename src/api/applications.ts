@@ -4,7 +4,19 @@ import {
   type ApplicationFields,
   type ApplicationContext,
 } from '../features/applications/model'
-import { ApiError, delay } from './mockFetch'
+import { ApiError, mockFetch } from './mockFetch'
+
+function parseReceipt(value: unknown): { id: string } {
+  if (
+    typeof value !== 'object' ||
+    value === null ||
+    !('id' in value) ||
+    typeof value.id !== 'string' ||
+    !value.id
+  )
+    throw new ApiError('Некоректне підтвердження заявки.')
+  return { id: value.id }
+}
 
 // A local mutation simulation: no personal data is transmitted or persisted.
 export async function submitApplication(
@@ -13,14 +25,13 @@ export async function submitApplication(
   signal: AbortSignal,
 ) {
   signal.throwIfAborted()
-  const values = normalizeApplication(fields)
-  if (Object.keys(validateApplication(values)).length)
+  if (Object.keys(validateApplication(fields)).length)
     throw new ApiError('Перевір заповнення форми.', 400)
-  await delay(300 + Math.floor(Math.random() * 501), signal)
-  signal.throwIfAborted()
-  if (Math.random() < 0.2)
-    throw new ApiError(
-      'Не вдалося надіслати заявку. Дані збережено у формі — спробуй ще раз.',
-    )
-  return { id: crypto.randomUUID(), ...values, ...context }
+  const values = normalizeApplication(fields)
+  const receipt = await mockFetch('applications', parseReceipt, signal, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...values, ...context }),
+  })
+  return { ...values, ...context, ...receipt }
 }

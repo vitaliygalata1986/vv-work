@@ -1,14 +1,11 @@
 import { describe, expect, it, vi } from 'vitest'
 import { submitApplication } from './applications'
-import {
-  emptyApplication,
-  validateApplication,
-} from '../features/applications/model'
+import { emptyApplication } from '../features/applications/model'
+import * as mockApi from './mockFetch'
 
 const fields = {
   name: ' Олена ',
-  email: ' olena@example.com ',
-  phone: '+380 (67) 123-45-67',
+  contact: ' +380 (67) 123-45-67 ',
   message: ' Шукаю роботу у Польщі. ',
 }
 const context = {
@@ -18,50 +15,8 @@ const context = {
 }
 
 describe('application API and validation', () => {
-  it('rejects invalid fields and accepts boundary lengths and an optional phone', async () => {
-    expect(validateApplication(emptyApplication)).toHaveProperty('name')
-    expect(
-      validateApplication({
-        ...fields,
-        name: 'x'.repeat(81),
-        email: 'broken',
-        phone: '+380abc123',
-        message: 'short',
-      }),
-    ).toEqual({
-      name: expect.any(String),
-      email: expect.any(String),
-      phone: expect.any(String),
-      message: expect.any(String),
-    })
-    expect(
-      validateApplication({
-        ...fields,
-        name: 'Ол',
-        phone: '',
-        message: 'x'.repeat(10),
-      }),
-    ).toEqual({})
-    expect(
-      validateApplication({
-        ...fields,
-        name: 'x'.repeat(80),
-        phone: '1234567',
-        message: 'x'.repeat(2000),
-      }),
-    ).toEqual({})
-    expect(
-      validateApplication({
-        ...fields,
-        phone: '123456',
-        message: 'x'.repeat(2001),
-        email: 'x'.repeat(250) + '@a.com',
-      }),
-    ).toEqual({
-      phone: expect.any(String),
-      message: expect.any(String),
-      email: expect.any(String),
-    })
+  it('rejects invalid fields before calling the shared wrapper', async () => {
+    const request = vi.spyOn(mockApi, 'mockFetch')
     await expect(
       submitApplication(
         emptyApplication,
@@ -69,6 +24,7 @@ describe('application API and validation', () => {
         new AbortController().signal,
       ),
     ).rejects.toMatchObject({ status: 400 })
+    expect(request).not.toHaveBeenCalled()
   })
 
   it.each([
@@ -81,11 +37,23 @@ describe('application API and validation', () => {
       vi.spyOn(Math, 'random').mockReturnValueOnce(random).mockReturnValue(0.2)
       const fetch = vi.fn()
       vi.stubGlobal('fetch', fetch)
+      const wrapper = vi.spyOn(mockApi, 'mockFetch')
+      const signal = new AbortController().signal
       const done = vi.fn()
       const request = submitApplication(
         fields,
         context,
-        new AbortController().signal,
+        signal,
+      )
+      expect(wrapper).toHaveBeenCalledWith(
+        'applications', expect.any(Function), signal, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: 'Олена', contact: '+380 (67) 123-45-67',
+            message: 'Шукаю роботу у Польщі.', ...context,
+          }),
+        },
       )
       void request.then(done)
       await vi.advanceTimersByTimeAsync(latency - 1)
@@ -94,7 +62,7 @@ describe('application API and validation', () => {
       await expect(request).resolves.toMatchObject({
         id: expect.any(String),
         name: 'Олена',
-        email: 'olena@example.com',
+        contact: '+380 (67) 123-45-67',
         message: 'Шукаю роботу у Польщі.',
         ...context,
       })

@@ -3,6 +3,7 @@ import { submitApplication } from '../../api/applications'
 import { Icon } from '../../components/ui/Icon'
 import {
   emptyApplication,
+  MAX_MESSAGE_LENGTH,
   normalizeApplication,
   validateApplication,
   type ApplicationContext,
@@ -20,20 +21,12 @@ const inputs = [
     maxLength: 80,
   },
   {
-    name: 'email',
-    label: 'Email',
-    type: 'email',
-    autoComplete: 'email',
-    placeholder: 'name@example.com',
-    maxLength: 254,
-  },
-  {
-    name: 'phone',
-    label: 'Телефон (необов’язково)',
-    type: 'tel',
-    autoComplete: 'tel',
-    placeholder: '+380',
-    maxLength: 30,
+    name: 'contact',
+    label: 'Телефон або Telegram',
+    type: 'text',
+    autoComplete: 'off',
+    placeholder: '+380 (67) 123-45-67 або @username',
+    maxLength: 64,
   },
 ] as const
 
@@ -61,7 +54,7 @@ export function ApplicationForm({ context }: { context: ApplicationContext }) {
     event.preventDefault()
     if (controllerRef.current) return
     const values = normalizeApplication(fields)
-    const nextErrors = validateApplication(values)
+    const nextErrors = validateApplication(fields)
     setErrors(nextErrors)
     setFailure('')
     const firstInvalid = Object.keys(nextErrors)[0]
@@ -107,8 +100,8 @@ export function ApplicationForm({ context }: { context: ApplicationContext }) {
           : 'Залиш заявку'}
       </h2>
       <p id="application-hint" className="mt-3 text-sm leading-6 text-muted">
-        Усі поля, крім телефону, обов’язкові. Це демонстраційна форма: дані не
-        надсилаються роботодавцям і не зберігаються після виходу зі сторінки.
+        Ім’я та контакт обов’язкові, повідомлення — за бажанням. Це демонстраційна
+        форма: дані не надсилаються роботодавцям і не зберігаються після виходу зі сторінки.
       </p>
       {context.jobTitle ? (
         <p className="mt-5 rounded-xl bg-brand-light p-4 text-sm font-semibold text-brand">
@@ -166,13 +159,23 @@ export function ApplicationForm({ context }: { context: ApplicationContext }) {
                   id={`application-${input.name}`}
                   value={fields[input.name]}
                   onChange={(event) => change(input.name, event.target.value)}
-                  required={input.name !== 'phone'}
+                  required
                   aria-invalid={Boolean(errors[input.name])}
                   aria-describedby={
-                    errors[input.name] ? `error-${input.name}` : undefined
+                    [
+                      input.name === 'contact' ? 'contact-hint' : '',
+                      errors[input.name] ? `error-${input.name}` : '',
+                    ]
+                      .filter(Boolean)
+                      .join(' ') || undefined
                   }
                   className="form-input"
                 />
+                {input.name === 'contact' ? (
+                  <p id="contact-hint" className="mt-2 text-xs text-muted">
+                    Номер із кодом країни або Telegram: @username чи t.me/username.
+                  </p>
+                ) : null}
                 {errors[input.name] ? (
                   <p
                     id={`error-${input.name}`}
@@ -188,15 +191,14 @@ export function ApplicationForm({ context }: { context: ApplicationContext }) {
                 htmlFor="application-message"
                 className="mb-2 block text-sm font-semibold"
               >
-                Повідомлення
+                Повідомлення (необов’язково)
               </label>
               <textarea
                 id="application-message"
                 name="message"
                 value={fields.message}
                 onChange={(event) => change('message', event.target.value)}
-                required
-                maxLength={2000}
+                maxLength={MAX_MESSAGE_LENGTH}
                 rows={4}
                 placeholder={
                   context.audience === 'employer'
@@ -210,7 +212,8 @@ export function ApplicationForm({ context }: { context: ApplicationContext }) {
                 className="form-input resize-y"
               />
               <p id="message-hint" className="mt-2 text-xs text-muted">
-                Від 10 до 2000 символів · {fields.message.length}/2000
+                До {MAX_MESSAGE_LENGTH} символів · {fields.message.length}/
+                {MAX_MESSAGE_LENGTH}
               </p>
               {errors.message ? (
                 <p id="error-message" className="mt-2 text-xs text-red-700">
