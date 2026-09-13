@@ -1,12 +1,21 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router'
 import { Footer } from './Footer'
 import { Header } from './Header'
 
 export function Layout() {
   const { pathname, hash, key } = useLocation()
+  const previousLocation = useRef<{ pathname: string; hash: string } | null>(
+    null,
+  )
 
   useEffect(() => {
+    const samePage =
+      previousLocation.current?.pathname === pathname &&
+      previousLocation.current.hash === hash
+    previousLocation.current = { pathname, hash }
+    // Filter changes update only the query string and must not reset reading position.
+    if (samePage && !hash) return
     if (hash) {
       const target = document.getElementById(hash.slice(1))
       target?.scrollIntoView({ block: hash === '#search' ? 'center' : 'start' })

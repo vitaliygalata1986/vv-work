@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Icon } from '../../components/ui/Icon'
 
-const suggestions = ['Логістика', 'Будівництво', 'Виробництво']
+const suggestions = ['Електрик', 'Комірник', 'Кухар']
 
 export function HeroSearch() {
   const navigate = useNavigate()
