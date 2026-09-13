@@ -13,6 +13,8 @@ export default defineConfig({
         'src/api/**/*.ts',
         'src/hooks/**/*.ts',
         'src/features/jobs/**/*.{ts,tsx}',
+        'src/features/applications/**/*.{ts,tsx}',
+        'src/pages/ContactsPage.tsx',
         'src/pages/PartnerPage.tsx',
         'src/features/home/PartnersSection.tsx',
       ],

@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from 'react-router'
+import { Link } from 'react-router'
 import { Icon } from '../components/ui/Icon'
 
 function PreviewPage({
@@ -29,17 +29,6 @@ function PreviewPage({
         На головну <Icon name="arrow" />
       </Link>
     </section>
-  )
-}
-
-export function ContactsPage() {
-  const [params] = useSearchParams()
-  const isEmployer = params.get('audience') === 'employer'
-  return (
-    <PreviewPage
-      title={isEmployer ? 'Знайдемо людей у вашу команду' : 'Будьмо на зв’язку'}
-      description="Сторінка контактів готується. Форма заявки поки недоступна."
-    />
   )
 }
 
