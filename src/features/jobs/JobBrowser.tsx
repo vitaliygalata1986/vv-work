@@ -1,49 +1,49 @@
-import { useCallback, useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router'
-import { categories, type Partner } from '../../data/catalog'
-import { DebouncedSearch } from './DebouncedSearch'
-import { JobResults } from './JobResults'
-import { countries, filterJobs, type Job } from './model'
+import { useCallback, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router';
+import { categories, type Partner } from '../../data/catalog';
+import { DebouncedSearch } from './DebouncedSearch';
+import { JobResults } from './JobResults';
+import { countries, filterJobs, type Job } from './model';
 
 export function JobBrowser({
   jobs,
   partners,
 }: {
-  jobs: readonly Job[]
-  partners: readonly Partner[]
+  jobs: readonly Job[];
+  partners: readonly Partner[];
 }) {
-  const [params, setParams] = useSearchParams()
-  const [resetVersion, setResetVersion] = useState(0)
-  const query = params.get('q') ?? ''
+  const [params, setParams] = useSearchParams();
+  const [resetVersion, setResetVersion] = useState(0);
+  const query = params.get('q') ?? '';
   const category = categories.some((item) => item.id === params.get('category'))
     ? (params.get('category') ?? '')
-    : ''
+    : '';
   const country = Object.hasOwn(countries, params.get('country') ?? '')
     ? (params.get('country') ?? '')
-    : ''
+    : '';
 
   const updateFilter = useCallback(
     (name: string, value: string) => {
       setParams(
         (current) => {
-          const next = new URLSearchParams(current)
-          if (value) next.set(name, value)
-          else next.delete(name)
-          return next
+          const next = new URLSearchParams(current);
+          if (value) next.set(name, value);
+          else next.delete(name);
+          return next;
         },
         { replace: true },
-      )
+      );
     },
     [setParams],
-  )
+  );
   const onQueryChange = useCallback(
     (value: string) => updateFilter('q', value),
     [updateFilter],
-  )
+  );
   const filteredJobs = useMemo(
     () => filterJobs(jobs, { query, category, country }),
     [jobs, query, category, country],
-  )
+  );
 
   return (
     <section aria-labelledby="jobs-title" className="min-w-0">
@@ -118,8 +118,8 @@ export function JobBrowser({
         <button
           type="button"
           onClick={() => {
-            setParams({}, { replace: true })
-            setResetVersion((value) => value + 1)
+            setParams({}, { replace: true });
+            setResetVersion((value) => value + 1);
           }}
           className="min-h-10 rounded-lg px-2 text-xs font-semibold text-brand hover:bg-brand-light"
         >
@@ -128,5 +128,5 @@ export function JobBrowser({
       </div>
       <JobResults jobs={filteredJobs} partners={partners} />
     </section>
-  )
+  );
 }
