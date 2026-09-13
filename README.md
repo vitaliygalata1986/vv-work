@@ -1,32 +1,91 @@
-# React + TypeScript + Vite
+# VV Work
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Тестове завдання: платформа для пошуку роботи та працівників у Європі.
+Vite + React + TypeScript (strict) + Tailwind CSS, без UI-кітів та глобальних бібліотек стану.
 
-Currently, two official plugins are available:
+## Запуск
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Потрібні Node.js 22.12+ та npm.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm ci
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Відкрийте адресу, яку Vite виведе в терміналі.
+
+```bash
+npm run build   # TypeScript + production build у dist/
+npm run preview # локальний перегляд production build
+npm run lint    # Oxlint
+```
+
+## Стан реалізації
+
+**Етап 1 — візуальний напрям і каркас застосунку.**
+
+- Спільні Header/Footer, мобільне меню, український інтерфейс.
+- Адаптивний перший екран із пошуком, країнами та підказками.
+- Пошук передає `q` і `country` в URL `/partners/vv-work`.
+- Маршрути `/partners/:slug` та `/контакти` поки містять явно позначені заготовки.
+- CTA для роботодавця відкриває `/контакти?audience=employer`.
+- Невідомі адреси показують сторінку з поверненням на головну.
+
+Наступні етапи: решта блоків головної, дані партнерів і вакансій, mock API,
+debounce та категорії, форма заявки, unit-тести, axe, Lighthouse, деплой Vercel.
+Покриття 60% і Lighthouse ≥90 ще не вимірювалися.
+
+### Перевірка першого етапу
+
+- `npm run build` і `npm run lint` проходять.
+- Chrome: перевірено 1440, 768 і 375 px, горизонтального переповнення немає.
+- Меню відкривається; Escape закриває його та повертає фокус на кнопку.
+- Пошук з кирилицею та `&` передає запит і країну; оновлення сторінки зберігає параметри.
+- Перевірено підказки, CTA роботодавця, сторінку 404 та повернення на головну.
+- Після фінального перезавантаження помилок у консолі та Vite overlay немає.
+- Unit-тести й автоматичний аудит доступності заплановані разом із наступними функціональними етапами.
+
+[Десктопний скриншот](docs/screenshots/home-desktop.png) · [Мобільний скриншот](docs/screenshots/home-mobile.png)
+
+## Архітектура
+
+```text
+src/
+  components/layout/  # Layout, Header, Footer, Logo
+  components/ui/      # власні базові елементи (Icon)
+  features/home/      # декоративна графіка першого екрана
+  features/search/    # форма пошуку та її локальний стан
+  pages/              # сторінки й тимчасові заготовки маршрутів
+  App.tsx             # дерево маршрутів React Router
+  index.css           # Tailwind, токени стилю та графіка
+```
+
+## Мої рішення
+
+1. Пошук — основна дія першого екрана. На телефоні він розташований перед графікою; для роботодавців є окремий CTA.
+2. Параметри пошуку передаються через URL: результат можна буде відкрити за посиланням. Введення та меню використовують локальний React state.
+3. Легка SVG/CSS-графіка та локальний Manrope з латиницею й кирилицею не потребують зовнішніх запитів до сервісів зображень або шрифтів.
+4. Спільний Layout відокремлює навігацію від сторінок; поведінка пошуку живе в окремому компоненті. Мемоізацію списку додамо разом із вакансіями та перевіримо на реальному сценарії.
+5. Видимий фокус, підписані поля, skip-link і закриття мобільного меню клавішею Escape закладені на першому етапі.
+
+## Комміти
+
+Кожний завершений етап фіксуємо окремим осмисленим коммітом:
+
+| Префікс    | Призначення                     |
+| ---------- | ------------------------------- |
+| `feat`     | Нова функціональність           |
+| `fix`      | Виправлення помилки             |
+| `refactor` | Рефакторинг без зміни поведінки |
+| `docs`     | Документація                    |
+| `test`     | Тести                           |
+| `style`    | Стилі та форматування           |
+| `chore`    | Технічні завдання               |
+| `perf`     | Покращення продуктивності       |
+
+Формат: `feat: add responsive home hero and app layout`.
+
+## Документація залежностей
+
+- [Tailwind CSS з Vite](https://tailwindcss.com/docs/installation/using-vite)
+- [React Router: declarative mode](https://reactrouter.com/start/declarative/installation)
