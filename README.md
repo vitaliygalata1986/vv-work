@@ -48,13 +48,6 @@ npm run test:coverage # звіт у coverage/index.html
 
 **Опубліковано та перевірено на Vercel:** Lighthouse Performance **99**, axe — **0 порушень у 27 перевірках**.
 
-## Деплой
-
-Імпортуйте GitHub-репозиторій у Vercel: preset **Vite**, корінь проєкту `./`,
-production-гілка `master`, команда `npm run build`, результат у `dist`.
-Змінні середовища не потрібні. `vercel.json` налаштовує відкриття прямих посилань
-React Router, зокрема `/partners/:slug` та `/контакти`.
-
 ## Дані та API
 
 Компанії, вакансії та зарплати вигадані; це позначено в інтерфейсі.
