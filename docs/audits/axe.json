@@ -1,11 +1,11 @@
 {
-  "date": "2026-09-13T22:07:54.003Z",
-  "baseURL": "http://127.0.0.1:4180",
+  "date": "2026-09-14T08:22:00.642Z",
+  "baseURL": "https://vv-work.vercel.app",
   "browser": "153.0.8010.36",
   "scans": [
     {
       "name": "home-1440",
-      "url": "http://127.0.0.1:4180/",
+      "url": "https://vv-work.vercel.app/",
       "viewport": {
         "width": 1440,
         "height": 1000
@@ -68,7 +68,7 @@
     },
     {
       "name": "partner-1440",
-      "url": "http://127.0.0.1:4180/partners/forma-industry",
+      "url": "https://vv-work.vercel.app/partners/forma-industry",
       "viewport": {
         "width": 1440,
         "height": 1000
@@ -84,7 +84,7 @@
     },
     {
       "name": "contacts-1440",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 1440,
         "height": 1000
@@ -100,7 +100,7 @@
     },
     {
       "name": "home-768",
-      "url": "http://127.0.0.1:4180/",
+      "url": "https://vv-work.vercel.app/",
       "viewport": {
         "width": 768,
         "height": 1000
@@ -163,7 +163,7 @@
     },
     {
       "name": "partner-768",
-      "url": "http://127.0.0.1:4180/partners/forma-industry",
+      "url": "https://vv-work.vercel.app/partners/forma-industry",
       "viewport": {
         "width": 768,
         "height": 1000
@@ -179,7 +179,7 @@
     },
     {
       "name": "contacts-768",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 768,
         "height": 1000
@@ -195,7 +195,7 @@
     },
     {
       "name": "home-375",
-      "url": "http://127.0.0.1:4180/",
+      "url": "https://vv-work.vercel.app/",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -333,7 +333,7 @@
     },
     {
       "name": "mobile-menu",
-      "url": "http://127.0.0.1:4180/",
+      "url": "https://vv-work.vercel.app/",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -546,7 +546,7 @@
     },
     {
       "name": "partner-375",
-      "url": "http://127.0.0.1:4180/partners/forma-industry",
+      "url": "https://vv-work.vercel.app/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -659,7 +659,7 @@
     },
     {
       "name": "contacts-375",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -675,7 +675,7 @@
     },
     {
       "name": "form-invalid",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -691,7 +691,7 @@
     },
     {
       "name": "form-error",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -707,7 +707,7 @@
     },
     {
       "name": "form-success",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -723,7 +723,7 @@
     },
     {
       "name": "employer-form",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?audience=employer",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?audience=employer",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -739,7 +739,7 @@
     },
     {
       "name": "home-loading",
-      "url": "http://127.0.0.1:4180/",
+      "url": "https://vv-work.vercel.app/",
       "viewport": {
         "width": 375,
         "height": 812
@@ -877,7 +877,7 @@
     },
     {
       "name": "home-loaded",
-      "url": "http://127.0.0.1:4180/",
+      "url": "https://vv-work.vercel.app/",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1015,7 +1015,7 @@
     },
     {
       "name": "home-error",
-      "url": "http://127.0.0.1:4180/",
+      "url": "https://vv-work.vercel.app/",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1153,7 +1153,7 @@
     },
     {
       "name": "home-retry-success",
-      "url": "http://127.0.0.1:4180/",
+      "url": "https://vv-work.vercel.app/",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1316,7 +1316,7 @@
     },
     {
       "name": "partner-loading",
-      "url": "http://127.0.0.1:4180/partners/forma-industry",
+      "url": "https://vv-work.vercel.app/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1332,7 +1332,7 @@
     },
     {
       "name": "partner-loaded",
-      "url": "http://127.0.0.1:4180/partners/forma-industry",
+      "url": "https://vv-work.vercel.app/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1445,7 +1445,7 @@
     },
     {
       "name": "partner-error",
-      "url": "http://127.0.0.1:4180/partners/forma-industry",
+      "url": "https://vv-work.vercel.app/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1461,7 +1461,7 @@
     },
     {
       "name": "partner-retry-success",
-      "url": "http://127.0.0.1:4180/partners/forma-industry",
+      "url": "https://vv-work.vercel.app/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1574,7 +1574,7 @@
     },
     {
       "name": "vacancy-form-loading",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1590,7 +1590,7 @@
     },
     {
       "name": "vacancy-form-loaded",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1606,7 +1606,7 @@
     },
     {
       "name": "vacancy-form-error",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1622,7 +1622,7 @@
     },
     {
       "name": "vacancy-form-retry-success",
-      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
+      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1638,7 +1638,7 @@
     },
     {
       "name": "empty-jobs",
-      "url": "http://127.0.0.1:4180/partners/vv-work?q=zzzzzz",
+      "url": "https://vv-work.vercel.app/partners/vv-work?q=zzzzzz",
       "viewport": {
         "width": 375,
         "height": 812
