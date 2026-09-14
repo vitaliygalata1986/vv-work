@@ -46,12 +46,12 @@ export function HeroSearch() {
             />
           </div>
         </div>
-        <div className="flex items-center gap-3 border-t border-line px-4 py-3 sm:w-45 sm:border-t-0 sm:border-l">
+        <div className="flex items-center gap-3 border-t border-line px-4 py-3 sm:w-52 sm:shrink-0 sm:border-t-0 sm:border-l">
           <Icon name="pin" className="size-5 shrink-0 text-muted" />
           <div className="relative min-w-0 flex-1">
             <label
               htmlFor="job-country"
-              className="mb-1 block text-[11px] font-bold"
+              className="mb-1 block pl-2 text-[11px] font-bold"
             >
               Де шукаємо?
             </label>
@@ -59,7 +59,7 @@ export function HeroSearch() {
               id="job-country"
               name="country"
               defaultValue=""
-              className="w-full appearance-none bg-transparent py-1 pr-5 text-sm"
+              className="w-full appearance-none bg-transparent py-2 pr-7 pl-2 text-sm"
             >
               <option value="">Уся Європа</option>
               <option value="pl">Польща</option>
@@ -69,7 +69,7 @@ export function HeroSearch() {
             </select>
             <Icon
               name="chevron"
-              className="pointer-events-none absolute right-0 bottom-2 size-3.5"
+              className="pointer-events-none absolute right-2 bottom-3 size-3.5"
             />
           </div>
         </div>
