@@ -200,12 +200,3 @@ npm run audit:lighthouse
 Скрипти перезаписують звіти в `docs/audits/`; axe завершується з помилкою при будь-якому
 порушенні, переповненні чи помилці JavaScript, Lighthouse — якщо Performance <90.
 Скриншот оновлюється окремо: відкрийте згенерований `lighthouse.html` у браузері.
-
-## Документація залежностей
-
-- [Tailwind CSS з Vite](https://tailwindcss.com/docs/installation/using-vite)
-- [React Router](https://reactrouter.com/start/declarative/installation)
-- [Vitest: coverage](https://vitest.dev/guide/coverage.html)
-- [Testing Library: fake timers](https://testing-library.com/docs/using-fake-timers/)
-- [Playwright: accessibility testing з axe](https://playwright.dev/docs/accessibility-testing)
-- [Lighthouse: програмний запуск](https://github.com/GoogleChrome/lighthouse/blob/main/docs/readme.md)
