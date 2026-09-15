@@ -1,11 +1,11 @@
 {
-  "date": "2026-09-14T08:22:00.642Z",
-  "baseURL": "https://vv-work.vercel.app",
+  "date": "2026-09-15T06:19:46.139Z",
+  "baseURL": "http://127.0.0.1:4180",
   "browser": "153.0.8010.36",
   "scans": [
     {
       "name": "home-1440",
-      "url": "https://vv-work.vercel.app/",
+      "url": "http://127.0.0.1:4180/",
       "viewport": {
         "width": 1440,
         "height": 1000
@@ -68,7 +68,39 @@
     },
     {
       "name": "partner-1440",
-      "url": "https://vv-work.vercel.app/partners/forma-industry",
+      "url": "http://127.0.0.1:4180/partners/forma-industry",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "passedRules": 43,
+      "violations": [],
+      "incomplete": [],
+      "overflow": false
+    },
+    {
+      "name": "jobs-first-batch-1440",
+      "url": "http://127.0.0.1:4180/partners/vv-work",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "passedRules": 43,
+      "violations": [],
+      "incomplete": [],
+      "overflow": false
+    },
+    {
+      "name": "jobs-expanded-1440",
+      "url": "http://127.0.0.1:4180/partners/vv-work",
       "viewport": {
         "width": 1440,
         "height": 1000
@@ -84,7 +116,7 @@
     },
     {
       "name": "contacts-1440",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 1440,
         "height": 1000
@@ -100,7 +132,7 @@
     },
     {
       "name": "home-768",
-      "url": "https://vv-work.vercel.app/",
+      "url": "http://127.0.0.1:4180/",
       "viewport": {
         "width": 768,
         "height": 1000
@@ -163,7 +195,39 @@
     },
     {
       "name": "partner-768",
-      "url": "https://vv-work.vercel.app/partners/forma-industry",
+      "url": "http://127.0.0.1:4180/partners/forma-industry",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "passedRules": 43,
+      "violations": [],
+      "incomplete": [],
+      "overflow": false
+    },
+    {
+      "name": "jobs-first-batch-768",
+      "url": "http://127.0.0.1:4180/partners/vv-work",
+      "viewport": {
+        "width": 768,
+        "height": 1000
+      },
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "passedRules": 43,
+      "violations": [],
+      "incomplete": [],
+      "overflow": false
+    },
+    {
+      "name": "jobs-expanded-768",
+      "url": "http://127.0.0.1:4180/partners/vv-work",
       "viewport": {
         "width": 768,
         "height": 1000
@@ -179,7 +243,7 @@
     },
     {
       "name": "contacts-768",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 768,
         "height": 1000
@@ -195,7 +259,7 @@
     },
     {
       "name": "home-375",
-      "url": "https://vv-work.vercel.app/",
+      "url": "http://127.0.0.1:4180/",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -333,7 +397,7 @@
     },
     {
       "name": "mobile-menu",
-      "url": "https://vv-work.vercel.app/",
+      "url": "http://127.0.0.1:4180/",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -546,7 +610,7 @@
     },
     {
       "name": "partner-375",
-      "url": "https://vv-work.vercel.app/partners/forma-industry",
+      "url": "http://127.0.0.1:4180/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -658,8 +722,184 @@
       "overflow": false
     },
     {
+      "name": "jobs-first-batch-375",
+      "url": "http://127.0.0.1:4180/partners/vv-work",
+      "viewport": {
+        "width": 375,
+        "height": 1000
+      },
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "passedRules": 43,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": "bgOverlap",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it is overlapped by another element"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"nav-link\" href=\"/#partners\" data-discover=\"true\">Партнери</a>",
+              "target": [
+                ".mb-8 > .nav-link[href$=\"/#partners\"][data-discover=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": "bgOverlap",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it is overlapped by another element"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span aria-current=\"page\">Усі вакансії</span>",
+              "target": [
+                "span[aria-current=\"page\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            }
+          ]
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "name": "jobs-expanded-375",
+      "url": "http://127.0.0.1:4180/partners/vv-work",
+      "viewport": {
+        "width": 375,
+        "height": 1000
+      },
+      "engine": {
+        "name": "axe-core",
+        "version": "4.13.0"
+      },
+      "passedRules": 43,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": "bgOverlap",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it is overlapped by another element"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<a class=\"nav-link\" href=\"/#partners\" data-discover=\"true\">Партнери</a>",
+              "target": [
+                ".mb-8 > .nav-link[href$=\"/#partners\"][data-discover=\"true\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            },
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "contrastRatio": 0,
+                    "fontSize": "9.0pt (12px)",
+                    "fontWeight": "normal",
+                    "messageKey": "bgOverlap",
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element's background color could not be determined because it is overlapped by another element"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<span aria-current=\"page\">Усі вакансії</span>",
+              "target": [
+                "span[aria-current=\"page\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+            }
+          ]
+        }
+      ],
+      "overflow": false
+    },
+    {
       "name": "contacts-375",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -675,7 +915,7 @@
     },
     {
       "name": "form-invalid",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -691,7 +931,7 @@
     },
     {
       "name": "form-error",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -707,7 +947,7 @@
     },
     {
       "name": "form-success",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -723,7 +963,7 @@
     },
     {
       "name": "employer-form",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?audience=employer",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?audience=employer",
       "viewport": {
         "width": 375,
         "height": 1000
@@ -739,7 +979,7 @@
     },
     {
       "name": "home-loading",
-      "url": "https://vv-work.vercel.app/",
+      "url": "http://127.0.0.1:4180/",
       "viewport": {
         "width": 375,
         "height": 812
@@ -877,7 +1117,7 @@
     },
     {
       "name": "home-loaded",
-      "url": "https://vv-work.vercel.app/",
+      "url": "http://127.0.0.1:4180/",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1015,7 +1255,7 @@
     },
     {
       "name": "home-error",
-      "url": "https://vv-work.vercel.app/",
+      "url": "http://127.0.0.1:4180/",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1153,7 +1393,7 @@
     },
     {
       "name": "home-retry-success",
-      "url": "https://vv-work.vercel.app/",
+      "url": "http://127.0.0.1:4180/",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1316,7 +1556,7 @@
     },
     {
       "name": "partner-loading",
-      "url": "https://vv-work.vercel.app/partners/forma-industry",
+      "url": "http://127.0.0.1:4180/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1332,7 +1572,7 @@
     },
     {
       "name": "partner-loaded",
-      "url": "https://vv-work.vercel.app/partners/forma-industry",
+      "url": "http://127.0.0.1:4180/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1445,7 +1685,7 @@
     },
     {
       "name": "partner-error",
-      "url": "https://vv-work.vercel.app/partners/forma-industry",
+      "url": "http://127.0.0.1:4180/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1461,7 +1701,7 @@
     },
     {
       "name": "partner-retry-success",
-      "url": "https://vv-work.vercel.app/partners/forma-industry",
+      "url": "http://127.0.0.1:4180/partners/forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1574,7 +1814,7 @@
     },
     {
       "name": "vacancy-form-loading",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1590,7 +1830,7 @@
     },
     {
       "name": "vacancy-form-loaded",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1606,7 +1846,7 @@
     },
     {
       "name": "vacancy-form-error",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1622,7 +1862,7 @@
     },
     {
       "name": "vacancy-form-retry-success",
-      "url": "https://vv-work.vercel.app/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
+      "url": "http://127.0.0.1:4180/%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B8?job=job-07&partner=forma-industry",
       "viewport": {
         "width": 375,
         "height": 812
@@ -1638,7 +1878,7 @@
     },
     {
       "name": "empty-jobs",
-      "url": "https://vv-work.vercel.app/partners/vv-work?q=zzzzzz",
+      "url": "http://127.0.0.1:4180/partners/vv-work?q=zzzzzz",
       "viewport": {
         "width": 375,
         "height": 812
