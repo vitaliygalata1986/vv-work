@@ -1,10 +1,11 @@
-import { memo } from 'react'
+import { memo, useEffect, useId, useRef, useState } from 'react'
 import { Link } from 'react-router'
 import { Icon } from '../../components/ui/Icon'
 import { categories, type Partner } from '../../data/catalog'
 import { countries, type Job } from './model'
 
 const number = new Intl.NumberFormat('uk-UA')
+const PAGE_SIZE = 10
 
 const JobCard = memo(function JobCard({
   job,
@@ -82,6 +83,19 @@ export const JobResults = memo(function JobResults({
   jobs: readonly Job[]
   partners: readonly Partner[]
 }) {
+  const [limit, setLimit] = useState(PAGE_SIZE)
+  const listId = useId()
+  const listRef = useRef<HTMLUListElement>(null)
+  const visibleCount = Math.min(limit, jobs.length)
+
+  useEffect(() => {
+    // Continue from the first new card, including when the button disappears.
+    if (limit > PAGE_SIZE) {
+      const firstNewCard = listRef.current?.children.item(limit - PAGE_SIZE)
+      if (firstNewCard instanceof HTMLElement) firstNewCard.focus()
+    }
+  }, [limit])
+
   if (!jobs.length)
     return (
       <div className="rounded-2xl border border-dashed border-line bg-white px-6 py-14 text-center">
@@ -94,17 +108,45 @@ export const JobResults = memo(function JobResults({
       </div>
     )
   return (
-    <ul aria-label="Список вакансій" className="space-y-4">
-      {jobs.map((job) => (
-        <li key={job.id}>
-          <JobCard
-            job={job}
-            partner={partners.find(
-              (partner) => partner.slug === job.partnerSlug,
-            )}
-          />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul
+        id={listId}
+        ref={listRef}
+        aria-label="Список вакансій"
+        className="space-y-4"
+      >
+        {jobs.slice(0, limit).map((job) => (
+          <li key={job.id} tabIndex={-1} className="rounded-2xl">
+            <JobCard
+              job={job}
+              partner={partners.find(
+                (partner) => partner.slug === job.partnerSlug,
+              )}
+            />
+          </li>
+        ))}
+      </ul>
+      <div className="mt-6 flex flex-col items-center gap-3">
+        <p
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="text-sm text-muted"
+        >
+          Показано {visibleCount} із {jobs.length}
+        </p>
+        {visibleCount < jobs.length && (
+          <button
+            type="button"
+            aria-controls={listId}
+            onClick={() => setLimit((current) => current + PAGE_SIZE)}
+            className="button-outline inline-flex min-h-12 w-full sm:w-auto"
+          >
+            Показати ще
+            <Icon name="chevron" className="size-4" />
+          </button>
+        )}
+      </div>
+    </>
   )
 })

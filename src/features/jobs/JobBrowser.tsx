@@ -126,7 +126,11 @@ export function JobBrowser({
           Скинути фільтри
         </button>
       </div>
-      <JobResults jobs={filteredJobs} partners={partners} />
+      <JobResults
+        key={JSON.stringify([query, category, country, resetVersion])}
+        jobs={filteredJobs}
+        partners={partners}
+      />
     </section>
   );
 }
